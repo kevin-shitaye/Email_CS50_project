@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#sent').addEventListener('click', () => load_mailbox('sent'));
   document.querySelector('#archived').addEventListener('click', () => load_mailbox('archive'));
   document.querySelector('#compose').addEventListener('click', compose_email);
-  document.querySelector('#compose-form').addEventListener('submit', send)
+  document.querySelector('#compose-form').addEventListener('click', send)
   // By default, load the inbox
   load_mailbox('inbox');
 });
@@ -32,22 +32,19 @@ function load_mailbox(mailbox) {
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 
-  if (mailbox === 'inbox'){
-    fetch('emails/inbox')
-    .then(response => response.json())
-    .then(emails => {
-      // Printing result to console
-      console.log(emails)
-      const mails = document.createElement('div')
-      // creating the inbox mailbox
-      document.querySelector('#emails-view').append()
+  // creating a string litral for mailbox to be fetched
+  fetch(`/emails/${mailbox}`)
+  .then(response => response.json())
+  .then(emails => {
+    // ... do something else with emails ...
+    emails.forEach(email => {
+      div = document.createElement('div')
+      div.innerHTML = `From: ${email.sender}. Subject: ${email.subject}`
+      document.querySelector('#emails-view').append(div)
+    });
 
-    })
-  }
-
+  });
 }
-
-
 
 
 function send() {
@@ -56,7 +53,7 @@ function send() {
   const subject = document.querySelector('#compose-subject').value;
   const body = document.querySelector('#compose-body').value;
   
-  // send email via the push
+  // send email via the POST method
   fetch('emails',{
     method: 'POST',
     body: JSON.stringify({
