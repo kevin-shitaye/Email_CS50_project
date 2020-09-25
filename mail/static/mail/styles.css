@@ -1,3 +1,27 @@
 textarea {
     min-height: 400px;
+    margin-bottom: 5px;
+}
+
+.mailboxes {
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 5px;
+    display: flex;
+}
+
+.mailboxes:hover{
+    background-color: aqua !important;
+}
+
+.mailboxes div {
+    margin-left: auto;
+    margin-right: 5px;
+    font-size: 12px;
+    font-weight: lighter;
+    pointer-events: none;
+}
+
+.mailboxes strong {
+    pointer-events: none;
 }
