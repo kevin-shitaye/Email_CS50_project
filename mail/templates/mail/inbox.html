@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-    <h2>{{ request.user.email }}</h2>
+    <h2 id="user">{{ request.user.email }}</h2>
 
     <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
     <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
@@ -34,7 +34,8 @@
         <div id="view_from" ></div>
         <div id="view_subject" ></div>
         <div id="view_body" ></div>
-        <input type="button" value="Reply" id="reply">
+        <input class="btn-sm btn-primary" type="button" value="Reply" id="reply">
+        <input class="btn-sm btn-primary" type="button"  id="archive_btn">
     </div>
 {% endblock %}
 
