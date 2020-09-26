@@ -102,7 +102,6 @@ function send() {
 
 
 function email_boxes(e){
-
   fetch(`/emails/${e.target.id}`)
   .then(response => response.json())
   .then(email =>{
@@ -122,10 +121,6 @@ function email_boxes(e){
       document.querySelector('#archive_btn').style.display = 'none';
     }
     else{
-      document.querySelector('#archive_btn').style.display = 'inline';
-      fetch(`/emails/${e.target.id}`)
-      .then(response => response.json())
-      .then(email =>{
         if (email.archived === true){
           document.querySelector('#archive_btn').value = 'Unarchive';
           archive = false
@@ -134,7 +129,7 @@ function email_boxes(e){
           document.querySelector('#archive_btn').value = 'Archive';
           archive = true
         }
-      })
+        document.querySelector('#archive_btn').style.display = 'inline';
     }
 
     // adding eventlistner in the archive btn
@@ -150,24 +145,26 @@ function email_boxes(e){
 
     // reply button
     document.querySelector('#reply').addEventListener('click', () => {
-      fetch(`/emails/${e.target.id}`)
-      .then(response => response.json())
-      .then(email =>{
         // Show compose view and hide other views
         document.querySelector('#emails-view').style.display = 'none';
         document.querySelector('#compose-view').style.display = 'block';
         document.querySelector('#view').style.display = "none";
 
         // Clear out body and Getting the email reciepts ready for reply
-        if(email.subject.slice(0,3) == 'Re:'){
+        if(email.subject.slice(0,3) === 'Re:'){
           document.querySelector('#compose-subject').value = email.subject;
         }
         else{
           document.querySelector('#compose-subject').value = `Re: ${email.subject}`;
         }
-        document.querySelector('#compose-recipients').value = email.recipients;
+        if (email.sender === user){
+          document.querySelector('#compose-recipients').value = email.recipients;
+        }
+        else{
+          document.querySelector('#compose-recipients').value = email.sender;
+        }
+        
         document.querySelector('#compose-body').value = '';
-      })
     })
   });
 
