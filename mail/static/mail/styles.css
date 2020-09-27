@@ -25,3 +25,23 @@ textarea {
 .mailboxes strong {
     pointer-events: none;
 }
+
+.sidebar {
+    background-color: #f0f0f0;
+    height: 100vh;
+    padding-top: 30px;
+    position: fixed;
+    z-index: 1;
+}
+.main {
+    margin-left: auto;
+}
+
+.button {
+    display: block;
+    width: 100%;
+}
+
+#logout {
+    margin-left: auto;
+}
