@@ -4,7 +4,7 @@ textarea {
 }
 
 .mailboxes {
-    border-style: solid;
+    border-style: groove;
     border-width: 1px;
     padding-left: 5px;
     display: flex;
@@ -44,4 +44,10 @@ textarea {
 
 #logout {
     margin-left: auto;
+}
+
+.card{
+    width: 18rem;
+    margin: 0 auto;
+    margin-top: 10%;
 }

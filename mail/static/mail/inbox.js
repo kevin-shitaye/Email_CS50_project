@@ -55,15 +55,19 @@ function load_mailbox(mailbox) {
       div.addEventListener('click', email_boxes);
       
       if (mailbox === "sent"){
-        div.innerHTML = `TO <strong>:  ${email.recipients} : </strong>${email.subject} <div>${email.timestamp}</div>`;
+        div.innerHTML = `TO: ${email.recipients} : ${email.subject} <div>${email.timestamp}</div>`;
           
       }
       else{
 
-        if (email.read === false){
-          div.style.backgroundColor = "rgb(230, 230, 230)"
+        if (email.read === true){
+          div.style.backgroundColor = "rgb(245, 245, 245)";
+          div.style.fontWeight = "lighter";
         }
-        div.innerHTML = `<strong>${email.sender} : </strong>${email.subject} <div>${email.timestamp}</div>`;
+        else{
+          div.style.fontWeight = "bolder";
+        }
+        div.innerHTML = `${email.sender} : ${email.subject} <div>${email.timestamp}</div>`;
       }
       document.querySelector('#emails-view').append(div);
 
