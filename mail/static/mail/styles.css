@@ -4,42 +4,49 @@ textarea {
 }
 
 .mailboxes {
-    border-style: groove;
-    border-width: 1px;
     padding-left: 5px;
     display: flex;
 }
 
 .mailboxes:hover{
-    background-color: aqua !important;
+    background-color:skyblue !important;
 }
 
-.mailboxes div {
-    margin-left: auto;
-    margin-right: 5px;
-    font-size: 12px;
-    font-weight: lighter;
-    pointer-events: none;
-}
+
 
 .mailboxes strong {
     pointer-events: none;
 }
 
-.sidebar {
-    background-color: #f0f0f0;
-    height: 100vh;
-    padding-top: 30px;
-    position: fixed;
-    z-index: 1;
-}
-.main {
-    margin-left: auto;
-}
 
-.button {
-    display: block;
-    width: 100%;
+@media only screen and (min-width: 768px) {
+    .mailboxes div {
+        margin-left: auto;
+        margin-right: 5px;
+        font-size: 12px;
+        font-weight: lighter;
+        pointer-events: none;
+    }
+    .sidebar {
+        background-color: #f0f0f0;
+        height: 100vh;
+        padding-top: 30px;
+        position: fixed;
+        z-index: 1;
+    }
+    .main {
+        margin-left: auto;
+    }
+    
+    .button {
+        display: block;
+        width: 100%;
+    }
+  }
+
+
+.sidebar{
+    margin:7px;
 }
 
 #logout {

@@ -47,8 +47,10 @@ function load_mailbox(mailbox) {
   .then(response => response.json())
   .then(emails => {
     // ... do something else with emails ...
+    let row_count = 0
     emails.forEach(email => {
       const div = document.createElement('div');
+      
       div.classList.add("mailboxes");
       div.id = email.id;
 
@@ -61,15 +63,21 @@ function load_mailbox(mailbox) {
       else{
 
         if (email.read === true){
-          div.style.backgroundColor = "rgb(245, 245, 245)";
-          div.style.fontWeight = "lighter";
+          div.style.color = "gray";
         }
         else{
           div.style.fontWeight = "bolder";
         }
         div.innerHTML = `${email.sender} : ${email.subject} <div>${email.timestamp}</div>`;
       }
+
+      // to make the email boxes striped
+      if (row_count % 2 === 0){
+        div.style.backgroundColor = "rgb(240, 240, 240)";
+      }
+      row_count++;
       document.querySelector('#emails-view').append(div);
+      
 
     });
 
